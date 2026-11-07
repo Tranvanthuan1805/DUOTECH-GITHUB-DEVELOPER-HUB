@@ -1,5 +1,8 @@
 # DUOTECH GitHub Developer Hub
 
+**Live demo:** https://duotech-github-developer-hub.vercel.app
+
+
 A practical GitHub API integration project by DUOTECH.
 
 This starter application demonstrates a real integration with the GitHub REST API:
@@ -50,7 +53,7 @@ Creating a repository or deploying this starter alone does not guarantee a badge
 
 See [Integration Overview](docs/INTEGRATION_OVERVIEW.md) for the API endpoints, data flow, security boundaries, support contact, and current limitations.
 
-The GitHub account has completed Developer Program registration. The app still needs to be run and deployed before it can be presented as a live public demo.
+The GitHub account has completed Developer Program registration. The application is deployed on Vercel and its production homepage plus both GitHub API routes have been checked successfully (HTTP 200).
 
 ## Project structure
 
