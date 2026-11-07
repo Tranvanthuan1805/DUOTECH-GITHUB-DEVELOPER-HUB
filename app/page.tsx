@@ -1,43 +1,28 @@
-type Profile = {
-  login: string;
-  name: string | null;
-  avatar_url: string;
-  bio: string | null;
-  html_url: string;
-  public_repos: number;
-  followers: number;
-  following: number;
-  company: string | null;
-  location: string | null;
-};
+import { githubFetch, type GitHubProfile, type GitHubRepo } from "@/lib/github";
 
-type Repository = {
-  id: number;
-  name: string;
-  description: string | null;
-  html_url: string;
-  language: string | null;
-  stargazers_count: number;
-  forks_count: number;
-  updated_at: string;
-};
+async function loadGitHubData() {
+  const username = process.env.GITHUB_USERNAME || "Tranvanthuan1805";
 
-async function getData<T>(path: string): Promise<T | null> {
   try {
-    const base = process.env.APP_URL || "http://localhost:3000";
-    const response = await fetch(`${base}${path}`, { cache: "no-store" });
-    if (!response.ok) return null;
-    return response.json() as Promise<T>;
+    const [profile, repositories] = await Promise.all([
+      githubFetch<GitHubProfile>(`/users/${encodeURIComponent(username)}`, { revalidate: 300 }),
+      githubFetch<GitHubRepo[]>(
+        `/users/${encodeURIComponent(username)}/repos?sort=updated&per_page=12&type=owner`,
+        { revalidate: 300 }
+      )
+    ]);
+
+    return {
+      profile,
+      repositories: repositories.filter((repository) => !repository.fork).slice(0, 8)
+    };
   } catch {
-    return null;
+    return { profile: null, repositories: [] as GitHubRepo[] };
   }
 }
 
 export default async function Home() {
-  const [profile, repositories] = await Promise.all([
-    getData<Profile>("/api/github/profile"),
-    getData<Repository[]>("/api/github/repos")
-  ]);
+  const { profile, repositories } = await loadGitHubData();
 
   return (
     <main className="shell">
@@ -72,7 +57,7 @@ export default async function Home() {
           </div>
         </section>
       ) : (
-        <section className="notice">GitHub profile data is not available yet. Start the app and check the server configuration.</section>
+        <section className="notice">GitHub profile data is temporarily unavailable. Please check your network or GitHub API rate limits.</section>
       )}
 
       <section className="section-heading">
@@ -80,7 +65,7 @@ export default async function Home() {
         <span className="live-label">● API DATA</span>
       </section>
 
-      {repositories?.length ? (
+      {repositories.length ? (
         <section className="repo-grid">
           {repositories.map((repo) => (
             <a className="repo-card" key={repo.id} href={repo.html_url} target="_blank" rel="noreferrer">
@@ -96,7 +81,7 @@ export default async function Home() {
           ))}
         </section>
       ) : (
-        <section className="notice">Repository data will appear here when the API is available.</section>
+        <section className="notice">Repository data is not available at the moment.</section>
       )}
 
       <footer><span>© {new Date().getFullYear()} DUOTECH</span><span>Built with the GitHub REST API</span></footer>
