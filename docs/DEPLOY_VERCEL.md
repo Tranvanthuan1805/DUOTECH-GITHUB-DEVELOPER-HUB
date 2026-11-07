@@ -1,5 +1,11 @@
 # Deploy to Vercel
 
+## Current production deployment
+
+Live URL: https://duotech-github-developer-hub.vercel.app
+
+The GitHub repository is connected to the Vercel project. Production builds run from the `main` branch. The current deployment has been verified to serve the dashboard and both GitHub API routes successfully.
+
 ## 1. Import the GitHub repository
 1. Sign in to Vercel with the account that will own the deployment.
 2. Select **Add New → Project**.
