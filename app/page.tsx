@@ -84,7 +84,7 @@ export default async function Home() {
         <section className="notice">Repository data is not available at the moment.</section>
       )}
 
-      <footer><span>© {new Date().getFullYear()} DUOTECH</span><span>Built with the GitHub REST API</span></footer>
+      <footer><span>© {new Date().getFullYear()} DUOTECH · Built with GitHub REST API</span><span><a href="https://www.duotechgroup.vn/" target="_blank" rel="noreferrer">DUOTECH ↗</a> · <a href="mailto:tranvanthuan2005tt@gmail.com">Support ↗</a></span></footer>
     </main>
   );
 }
