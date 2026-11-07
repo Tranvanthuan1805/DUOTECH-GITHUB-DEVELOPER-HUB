@@ -46,6 +46,12 @@ This repository is a working integration starter, not an automatic enrollment. T
 
 Creating a repository or deploying this starter alone does not guarantee a badge. GitHub makes the membership decision.
 
+## Integration details
+
+See [Integration Overview](docs/INTEGRATION_OVERVIEW.md) for the API endpoints, data flow, security boundaries, support contact, and current limitations.
+
+The GitHub account has completed Developer Program registration. The app still needs to be run and deployed before it can be presented as a live public demo.
+
 ## Project structure
 
 ```
