@@ -24,6 +24,10 @@ npm run dev
 
 Open http://localhost:3000.
 
+## Support
+
+For questions and support, contact: **tranvanthuan2005tt@gmail.com**.
+
 ## Configuration
 
 Set `GITHUB_USERNAME` to the GitHub account whose public repositories you want to display.
@@ -31,6 +35,8 @@ Set `GITHUB_USERNAME` to the GitHub account whose public repositories you want t
 For authenticated API access, create a fine-grained personal access token or GitHub App installation token with only the permissions required by your use case. Store it as `GITHUB_TOKEN` in your local environment or hosting provider's secret manager. Do not commit tokens.
 
 ## GitHub Developer Program
+
+Support contact for this integration: **tranvanthuan2005tt@gmail.com**.
 
 This repository is a working integration starter, not an automatic enrollment. To pursue the Developer Program Member profile badge:
 1. Make this app operational and use GitHub APIs as part of a real integration.
